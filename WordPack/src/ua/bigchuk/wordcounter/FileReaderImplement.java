@@ -8,9 +8,23 @@ public class FileReaderImplement {
 
 	private String filestr;
 
-	public FileReaderImplement(String name) {
+	public FileReaderImplement() {
 
-		file = new File(name);
+		try {
+
+			BufferedReader stdin = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			System.out.println("Enter path File");
+			String s = stdin.readLine();
+
+			file = new File(s);
+
+			System.out.println("get the files in the specified path "
+					+ file.getPath());
+
+		} catch (IOException e) {
+		}
 
 	}
 
@@ -22,10 +36,8 @@ public class FileReaderImplement {
 
 		try {
 
-			FileInputStream in = new FileInputStream(file);
-			DataInputStream str = new DataInputStream(in);
-
-			filestr = fileToString(str);
+			BufferedReader in = new BufferedReader(new FileReader(file));
+			filestr = fileToString(in);
 
 		}// try
 
@@ -34,7 +46,7 @@ public class FileReaderImplement {
 
 	}
 
-	private String fileToString(DataInputStream str) {
+	private String fileToString(BufferedReader str) {
 
 		String filestr1 = "";
 		String s = "";
@@ -47,7 +59,7 @@ public class FileReaderImplement {
 				filestr1 = filestr1 + " ";
 
 			}
-
+			str.close();
 		}
 
 		catch (IOException e) {

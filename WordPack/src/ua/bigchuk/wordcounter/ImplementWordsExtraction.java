@@ -2,7 +2,7 @@ package ua.bigchuk.wordcounter;
 
 import ua.bigchuk.arrayLists.MyArray;
 
-public class ImplementWordsExtraction  {
+public class ImplementWordsExtraction {
 
 	private MyArray words = new MyArray();
 
@@ -89,6 +89,7 @@ public class ImplementWordsExtraction  {
 
 		}// for
 
+		log();
 	};// parse
 
 	public int getWordsCount() {
@@ -106,5 +107,11 @@ public class ImplementWordsExtraction  {
 
 		return buf;
 	};// getWords
+
+	private void log() {
+
+		System.out.println("get " + getWordsCount() + " words");
+
+	}
 
 };// clas

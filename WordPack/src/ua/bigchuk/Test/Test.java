@@ -6,32 +6,30 @@ abstract class Test {
 
 	public static void main(String[] args) {
 
-		// for total time
-		long totalT = -System.currentTimeMillis();
-
+		FileReaderImplement file = new FileReaderImplement();
+		WordSaveImplement fileSave = new WordSaveImplement("forSun.txt");
 		ImplementWordsExtraction wordsextractor = new ImplementWordsExtraction();
 		WordsCounterImplement countWords = new WordsCounterImplement();
 
+		// for total time
+		long totalT = -System.currentTimeMillis();
 		// for file read time
 		long readT = -System.currentTimeMillis();
-
-		FileReaderImplement file = new FileReaderImplement(
-				"E:\\work\\rfc2822.txt");
 
 		file.readFile();
 
 		String fileString = file.getFileString();
 
-		// for file read time
+		// for file read end time
 		readT += System.currentTimeMillis();
 
-		// for word extract time
+		// for word extract begin time
 		long extractT = -System.currentTimeMillis();
 
 		wordsextractor.parseString(fileString);
 		String[] f = wordsextractor.getWords();
 
-		// for word extract time
+		// for word extract end time
 		extractT += System.currentTimeMillis();
 
 		// for word counter time
@@ -45,7 +43,6 @@ abstract class Test {
 		// for save time
 		long saveT = -System.currentTimeMillis();
 
-		WordSaveImplement fileSave = new WordSaveImplement("forSun.txt");
 		fileSave.save(countWords);
 
 		// for save time

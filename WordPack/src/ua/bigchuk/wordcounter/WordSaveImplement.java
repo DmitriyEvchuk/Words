@@ -31,6 +31,8 @@ public class WordSaveImplement {
 		} catch (IOException e) {
 		}
 
+		System.out.println("Result save in  "+file.getPath());
+		
 	}// save
 
 };

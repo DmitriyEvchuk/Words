@@ -1,6 +1,6 @@
 package ua.bigchuk.wordcounter;
 
-import static ua.bigchuk.compare.StringCompare.*;
+import java.io.*;
 import ua.bigchuk.arrayLists.MyArray;
 
 public class WordsCounterImplement {
@@ -10,11 +10,13 @@ public class WordsCounterImplement {
 
 	public void wordsCounter(String[] words) {
 
+		char caser = readTerminal();
+
 		MyArray word = new MyArray();
 		MyArray count = new MyArray();
 
 		int countWords = 0;
-		//if word is in object MyArray "word" this is true
+		// if word is in object MyArray "word" this is true
 		Boolean inWord = false;
 
 		for (int i = 0; i < words.length; i++)// for
@@ -29,9 +31,18 @@ public class WordsCounterImplement {
 
 				for (int k = 0; k < words.length; k++) {
 
-					if (equalsString(buf, words[k])) {
-						countWords++;
-					}
+					if (caser == 'n')
+
+						if (buf.equalsIgnoreCase(words[k])) {
+							countWords++;
+						}
+
+					if (caser == 'y')
+
+						if (buf.equals(words[k])) {
+							countWords++;
+						}
+
 				}// for
 				count.add(countWords);
 
@@ -43,12 +54,19 @@ public class WordsCounterImplement {
 
 				for (int j = 0; j < word.length(); j++)// for1
 				{
+					if (caser == 'n')
 
-					if (equalsString(buf, ((String) word.getVal(j)))) {// if
+						if ((buf.equalsIgnoreCase((String) word.getVal(j)))) {// if
+							inWord = true;
 
-						inWord = true;
+						}// if1
 
-					}// if1
+					if (caser == 'y')
+
+						if ((buf.equals((String) word.getVal(j)))) {// if
+							inWord = true;
+
+						}// if1
 
 				}// for1
 
@@ -56,9 +74,17 @@ public class WordsCounterImplement {
 
 					for (int z = 0; z < words.length; z++) {// for2
 
-						if (equalsString(buf, words[z])) {
-							countWords++;
-						}
+						if (caser == 'n')
+
+							if (buf.equalsIgnoreCase(words[z])) {
+								countWords++;
+							}
+
+						if (caser == 'y')
+
+							if (buf.equals(words[z])) {
+								countWords++;
+							}
 
 					}// for2
 
@@ -75,7 +101,7 @@ public class WordsCounterImplement {
 		}// for
 
 		createFinalWord(word, count);
-
+		log();
 	}
 
 	public Integer getWordCount() {
@@ -113,4 +139,26 @@ public class WordsCounterImplement {
 
 	}
 
+	private void log() {
+		System.out.println("In this file use " + getWordCount()
+				+ " differnt word");
+	}
+
+	private char readTerminal() {
+
+		Character s = null;
+
+		try {
+
+			BufferedReader stdin = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			System.out.println("count word case sensitive Y or N");
+			s = (char) stdin.read();
+
+		} catch (IOException e) {
+		}
+
+		return Character.toLowerCase(s);
+	}
 };
