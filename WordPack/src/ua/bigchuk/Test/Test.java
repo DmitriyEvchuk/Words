@@ -7,7 +7,6 @@ abstract class Test {
 	public static void main(String[] args) {
 
 		FileReaderImplement file = new FileReaderImplement();
-		WordSaveImplement fileSave = new WordSaveImplement("forSun.txt");
 		ImplementWordsExtraction wordsextractor = new ImplementWordsExtraction();
 		WordsCounterImplement countWords = new WordsCounterImplement();
 
@@ -40,13 +39,6 @@ abstract class Test {
 		// //for word counter time
 		countT += System.currentTimeMillis();
 
-		// for save time
-		long saveT = -System.currentTimeMillis();
-
-		fileSave.save(countWords);
-
-		// for save time
-		saveT += System.currentTimeMillis();
 		// for total time
 		totalT += System.currentTimeMillis();
 
@@ -54,7 +46,7 @@ abstract class Test {
 		System.out.println("read " + readT);
 		System.out.println("extract " + extractT);
 		System.out.println("count " + countT);
-		System.out.println("save " + saveT);
+		// E:\work\rfc2822.txt
 
 	}// main
 

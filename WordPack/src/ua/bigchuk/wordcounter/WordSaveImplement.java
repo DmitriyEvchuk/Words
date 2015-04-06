@@ -2,37 +2,43 @@ package ua.bigchuk.wordcounter;
 
 import java.io.*;
 
-public class WordSaveImplement {
+import ua.bigchuk.Tree.TreeItemProcess;
+import ua.bigchuk.Tree.MyTree.MyTreeItem;
+
+public class WordSaveImplement implements TreeItemProcess {
 
 	private File file;
+	// private PrintWriter save;
+	private FileWriter save;
 
 	public WordSaveImplement(String name) {
 
 		file = new File(name);
-	}
-
-	public void save(WordsCounterImplement wordscounter) {
-
 		try {
 
+			if (file.exists())
+				file.delete();
+
 			file.createNewFile();
-
-			PrintWriter save = new PrintWriter(file);
-
-			for (int i = 0; i < wordscounter.getWordCount(); i++) {
-
-				save.println(wordscounter.getFinalWord(i) + " "
-						+ wordscounter.getFinalWordCount());
-
-			}
-
-			save.close();
-
+			System.out.println("Result save in  " + file.getPath());
 		} catch (IOException e) {
 		}
 
-		System.out.println("Result save in  "+file.getPath());
-		
+	}
+
+	public void process(MyTreeItem current) {
+
+		try {
+
+			save = new FileWriter(file, true);
+			save.write(current.getWord() + " " + current.getCount().toString()
+					+ " " + "\n");
+			save.close();
+		}
+
+		catch (IOException e) {
+		}
+
 	}// save
 
 };
