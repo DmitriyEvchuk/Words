@@ -1,10 +1,10 @@
 package ua.bigchuk.wordcounter;
 
 import ua.bigchuk.Tree.*;
-
+import ua.bigchuk.compare.*;
 import java.io.*;
 
-import ua.bigchuk.arrayLists.MyArray;
+
 
 public class WordsCounterImplement {
 
